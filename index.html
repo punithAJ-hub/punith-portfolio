@@ -308,6 +308,55 @@
     }
     .project-link:hover { color: var(--accent); border-color: var(--accent); }
 
+    /* ─── Project Tabs ───────────────────────────────────────────── */
+    .proj-tabs {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .proj-tab {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 8px 18px; border-radius: 24px;
+      font-size: 13px; font-weight: 500; cursor: pointer;
+      border: 1px solid var(--border);
+      background: transparent; color: var(--text-muted);
+      transition: all 0.2s; font-family: 'Inter', sans-serif;
+    }
+    .proj-tab:hover { border-color: var(--accent); color: var(--accent); }
+    .proj-tab.active {
+      background: var(--accent-glow); border-color: var(--accent);
+      color: var(--accent);
+    }
+    .proj-tab-count {
+      font-size: 11px; font-weight: 600; opacity: 0.7;
+      background: rgba(255,255,255,0.08); padding: 1px 6px; border-radius: 8px;
+    }
+    .proj-tab.active .proj-tab-count { background: rgba(88,166,255,0.18); opacity: 1; }
+
+    /* ─── Project Category Badges ────────────────────────────────── */
+    .project-cat-badge {
+      display: inline-block; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.8px; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 4px; margin-bottom: 14px;
+    }
+    .badge-ai      { background: rgba(188,140,255,0.15); color: var(--purple); border: 1px solid rgba(188,140,255,0.3); }
+    .badge-fullstack { background: rgba(88,166,255,0.12); color: var(--accent); border: 1px solid rgba(88,166,255,0.25); }
+    .badge-frontend  { background: rgba(63,185,80,0.12); color: var(--green); border: 1px solid rgba(63,185,80,0.25); }
+    .badge-systems   { background: rgba(255,166,87,0.12); color: var(--orange); border: 1px solid rgba(255,166,87,0.25); }
+
+    /* ─── GitHub link inside project card ───────────────────────── */
+    .proj-gh-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      margin-left: auto; font-size: 11px; font-weight: 500;
+      color: var(--text-muted); text-decoration: none;
+      padding: 4px 10px; border: 1px solid var(--border);
+      border-radius: 6px; transition: all 0.2s; white-space: nowrap;
+    }
+    .proj-gh-link:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ─── Project card hide/show animation ──────────────────────── */
+    .project-card.hidden {
+      display: none;
+    }
+
     /* ─── Skills ─────────────────────────────────────────────────── */
     #skills { background: linear-gradient(180deg, var(--bg) 0%, #0a0d13 100%); }
     .skills-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
@@ -519,14 +568,14 @@
 
       <div class="about-highlights reveal reveal-delay-2">
         <div class="highlight-card">
-          <div class="hig(light-icon">🚀</div>
+          <div class="highlight-icon">🚀</div>
           <div class="highlight-num">40%</div>
           <div class="highlight-desc">Increased mortgage recommendation accuracy at Rocket Mortgage</div>
         </div>
         <div class="highlight-card">
           <div class="highlight-icon">⚡</div>
           <div class="highlight-num">80%</div>
-          <div class="highlight-desc">Reduced SQS dead-lettered messages (1500/day → 12/day)</div>
+          <div class="highlight-desc">Reduced SQS dead-lettered messages (1500/day ₒ 12/day)</div>
         </div>
         <div class="highlight-card">
           <div class="highlight-icon">🔧</div>
@@ -569,7 +618,7 @@
           <ul class="exp-bullets">
             <li>Increased mortgage product <strong>recommendation accuracy 40%</strong> by migrating rule logic into a configurable Spring Boot service, externalizing criteria for rapid updates by underwriting stakeholders.</li>
             <li>Led migration of rocket.com serving <strong>10M+ monthly users</strong> from Angular to React/Next.js; integrated third-party services via GraphQL APIs to optimize inter-service communication.</li>
-            <li>Reduced SQS dead-lettered messages <strong>80%</strong> (DLQ backlog: 1500/day → 12/day) by redesigning data retention workflow, tuning consumer concurrency/retries, and improving cold-start path.</li>
+            <li>Reduced SQS dead-lettered messages <strong>80%</strong> (DLQ backlog: 1500/day ₒ 12/day) by redesigning data retention workflow, tuning consumer concurrency/retries, and improving cold-start path.</li>
             <li>Built automated test frameworks (JUnit, Postman, Playwright), increasing <strong>test coverage 45%</strong> and reducing regression defects 30% via CI/CD integration.</li>
           </ul>
           <div class="exp-tech">
@@ -674,14 +723,26 @@
 <section id="projects">
   <div class="container">
     <hr class="section-divider" />
-    <div class="reveal" style="margin-bottom:48px;">
+    <div class="reveal" style="margin-bottom:40px;">
       <p class="section-label">Projects</p>
       <h2 class="section-title">Things I've built.</h2>
-      <p class="section-sub">Personal and academic projects exploring microservices, ML, and AI.</p>
+      <p class="section-sub">Personal, academic, and open-source projects spanning AI, full-stack, frontend, and systems engineering.</p>
     </div>
 
-    <div class="projects-grid">
-      <div class="project-card reveal">
+    <!-- Tab Bar -->
+    <div class="proj-tabs reveal" style="margin-bottom:40px;">
+      <button class="proj-tab active" data-filter="all">All <span class="proj-tab-count">11</span></button>
+      <button class="proj-tab" data-filter="ai">AI &amp; ML <span class="proj-tab-count">4</span></button>
+      <button class="proj-tab" data-filter="fullstack">Full-Stack <span class="proj-tab-count">4</span></button>
+      <button class="proj-tab" data-filter="frontend">Frontend <span class="proj-tab-count">2</span></button>
+      <button class="proj-tab" data-filter="systems">Systems &amp; IoT <span class="proj-tab-count">1</span></button>
+    </div>
+
+    <div class="projects-grid" id="projects-grid">
+
+      <!-- ── AI & ML ── -->
+      <div class="project-card reveal" data-cat="ai">
+        <div class="project-cat-badge badge-ai">AI &amp; ML</div>
         <div class="project-icon">🤖</div>
         <div class="project-name">The General AI Chatbot</div>
         <div class="project-desc">AI-enabled chatbot leveraging AWS Bedrock and Python NLP to cross-reference deployment logs, ADO tasks, Git PRs, and change records — dramatically reducing incident response time.</div>
@@ -693,7 +754,56 @@
         </div>
       </div>
 
-      <div class="project-card reveal reveal-delay-1">
+      <div class="project-card reveal reveal-delay-1" data-cat="ai">
+        <div class="project-cat-badge badge-ai">AI &amp; ML</div>
+        <div class="project-icon">💬</div>
+        <div class="project-name">OpenAI Chatbot</div>
+        <div class="project-desc">Conversational AI assistant built with Python and the OpenAI API, featuring context-aware multi-turn dialogue, dynamic prompt templating, and clean CLI + web interface.</div>
+        <div class="project-metric">GPT-4 powered conversations</div>
+        <div class="project-links">
+          <span class="tag tag-blue">Python</span>
+          <span class="tag tag-purple">OpenAI API</span>
+          <span class="tag tag-muted">Prompt Engineering</span>
+          <a href="https://github.com/punithAJ-hub/OpenAIChatbot" target="_blank" class="proj-gh-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-2" data-cat="ai">
+        <div class="project-cat-badge badge-ai">AI &amp; ML</div>
+        <div class="project-icon">🧠</div>
+        <div class="project-name">Depression Analysis Tool</div>
+        <div class="project-desc">Flask-based web app classifying tweets by sentiment using Naïve Bayes supervised classification — trained on 10,000+ data points extracted from Twitter via TWINT API.</div>
+        <div class="project-metric">90% classification accuracy</div>
+        <div class="project-links">
+          <span class="tag tag-green">Flask</span>
+          <span class="tag tag-purple">Naïve Bayes</span>
+          <span class="tag tag-blue">Python</span>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="ai">
+        <div class="project-cat-badge badge-ai">AI &amp; ML</div>
+        <div class="project-icon">🛒</div>
+        <div class="project-name">Emerging Tech E-Commerce</div>
+        <div class="project-desc">B2C e-commerce platform for technology products with real-time cybersecurity risk ratings per item — helping consumers make safer purchasing decisions using live threat intelligence.</div>
+        <div class="project-metric">Cybersecurity-aware shopping</div>
+        <div class="project-links">
+          <span class="tag tag-blue">Python</span>
+          <span class="tag tag-green">Flask</span>
+          <span class="tag tag-orange">Cybersecurity</span>
+          <a href="https://github.com/ZeherovicErmin/Emerging-Technologies" target="_blank" class="proj-gh-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- ── Full-Stack ── -->
+      <div class="project-card reveal reveal-delay-1" data-cat="fullstack">
+        <div class="project-cat-badge badge-fullstack">Full-Stack</div>
         <div class="project-icon">🏗️</div>
         <div class="project-name">Contractor Management System</div>
         <div class="project-desc">Scalable microservices application for quote and order processing with real-time analytics. Designed SQL data models and optimized backend for 25% improvement in user satisfaction.</div>
@@ -705,17 +815,110 @@
         </div>
       </div>
 
-      <div class="project-card reveal reveal-delay-2">
-        <div class="project-icon">🧠</div>
-        <div class="project-name">Depression Analysis Tool</div>
-        <div class="project-desc">Flask-based web app classifying tweets by sentiment using Naïve Bayes supervised classification — trained on 10,000+ data points extracted from Twitter via TWINT API.</div>
-        <div class="project-metric">90% classification accuracy</div>
+      <div class="project-card reveal reveal-delay-2" data-cat="fullstack">
+        <div class="project-cat-badge badge-fullstack">Full-Stack</div>
+        <div class="project-icon">🏥</div>
+        <div class="project-name">Care Pro</div>
+        <div class="project-desc">Healthcare management platform built with TypeScript featuring patient records, appointment scheduling, and provider dashboards — designed with a focus on clean UX and type safety throughout.</div>
+        <div class="project-metric">Type-safe healthcare platform</div>
         <div class="project-links">
-          <span class="tag tag-green">Flask</span>
-          <span class="tag tag-purple">Naïve Bayes</span>
-          <span class="tag tag-blue">Python</span>
+          <span class="tag tag-green">TypeScript</span>
+          <span class="tag tag-green">React</span>
+          <span class="tag tag-blue">REST APIs</span>
+          <a href="https://github.com/punithAJ-hub/Care_Pro" target="_blank" class="proj-gh-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
         </div>
       </div>
+
+      <div class="project-card reveal" data-cat="fullstack">
+        <div class="project-cat-badge badge-fullstack">Full-Stack</div>
+        <div class="project-icon">🪵</div>
+        <div class="project-name">WoodWorks Wizard</div>
+        <div class="project-desc">Full-stack woodworks business management system with inventory tracking, order management, and customer portal. Built with Java backend and relational database design for a local workshop.</div>
+        <div class="project-metric">End-to-end business management</div>
+        <div class="project-links">
+          <span class="tag tag-blue">Java</span>
+          <span class="tag tag-muted">MySQL</span>
+          <span class="tag tag-muted">JDBC</span>
+          <a href="https://github.com/punithAJ-hub/WoodWorks-Wizard" target="_blank" class="proj-gh-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-1" data-cat="fullstack">
+        <div class="project-cat-badge badge-fullstack">Full-Stack</div>
+        <div class="project-icon">📦</div>
+        <div class="project-name">Inventory Management System</div>
+        <div class="project-desc">PHP and MySQL-based inventory tracking application with CRUD operations, stock alerts, supplier management, and reporting dashboards — built for small business operations.</div>
+        <div class="project-metric">Full CRUD + real-time alerts</div>
+        <div class="project-links">
+          <span class="tag tag-muted">PHP</span>
+          <span class="tag tag-purple">MySQL</span>
+          <span class="tag tag-muted">HTML/CSS</span>
+          <a href="https://github.com/punithAJ-hub/Inventory_Management_System" target="_blank" class="proj-gh-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- ── Frontend ── -->
+      <div class="project-card reveal reveal-delay-2" data-cat="frontend">
+        <div class="project-cat-badge badge-frontend">Frontend</div>
+        <div class="project-icon">🛍️</div>
+        <div class="project-name">Shopping Cart — Advanced Redux</div>
+        <div class="project-desc">Feature-rich e-commerce cart demonstrating advanced Redux state management patterns — async thunks, normalized state, optimistic UI updates, and cart persistence across sessions.</div>
+        <div class="project-metric">Advanced state management patterns</div>
+        <div class="project-links">
+          <span class="tag tag-green">React</span>
+          <span class="tag tag-green">Redux</span>
+          <span class="tag tag-green">JavaScript</span>
+          <a href="https://github.com/punithAJ-hub/ShoppingCart-Advanced_Redux-" target="_blank" class="proj-gh-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="frontend">
+        <div class="project-cat-badge badge-frontend">Frontend</div>
+        <div class="project-icon">🚗</div>
+        <div class="project-name">Tesla Clone — React</div>
+        <div class="project-desc">Pixel-perfect clone of the Tesla.com landing page built with React — featuring smooth scroll animations, responsive design, lazy-loaded hero sections, and component-based architecture.</div>
+        <div class="project-metric">Pixel-perfect responsive clone</div>
+        <div class="project-links">
+          <span class="tag tag-green">React</span>
+          <span class="tag tag-green">CSS Animations</span>
+          <span class="tag tag-muted">Responsive</span>
+          <a href="https://github.com/punithAJ-hub/Tesla-clone-React" target="_blank" class="proj-gh-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- ── Systems & IoT ── -->
+      <div class="project-card reveal reveal-delay-1" data-cat="systems">
+        <div class="project-cat-badge badge-systems">Systems &amp; IoT</div>
+        <div class="project-icon">📡</div>
+        <div class="project-name">LoRa Network Simulation</div>
+        <div class="project-desc">Low-power wide-area network (LPWAN) simulation implementing LoRa radio protocol in C. Models multi-gateway topologies, packet collision rates, and signal propagation for IoT deployment planning.</div>
+        <div class="project-metric">⭐ Starred · IoT network modeling</div>
+        <div class="project-links">
+          <span class="tag tag-muted">C</span>
+          <span class="tag tag-orange">LoRa Protocol</span>
+          <span class="tag tag-orange">IoT</span>
+          <a href="https://github.com/punithAJ-hub/Lora-Simulation" target="_blank" class="proj-gh-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -877,6 +1080,34 @@
     });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ─── Project Tab Filter ─────────────────────────────────────── */
+  const tabs = document.querySelectorAll('.proj-tab');
+  const cards = document.querySelectorAll('#projects-grid .project-card');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      // Update active tab
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const filter = tab.dataset.filter;
+
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.cat === filter) {
+          card.classList.remove('hidden');
+          // Re-trigger reveal animation
+          setTimeout(() => {
+            if (!card.classList.contains('visible')) {
+              card.classList.add('visible');
+            }
+          }, 20);
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
 </script>
 
 </body>
