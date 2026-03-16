@@ -341,6 +341,7 @@
     .badge-fullstack { background: rgba(88,166,255,0.12); color: var(--accent); border: 1px solid rgba(88,166,255,0.25); }
     .badge-frontend  { background: rgba(63,185,80,0.12); color: var(--green); border: 1px solid rgba(63,185,80,0.25); }
     .badge-systems   { background: rgba(255,166,87,0.12); color: var(--orange); border: 1px solid rgba(255,166,87,0.25); }
+    .badge-analytics { background: rgba(32,178,170,0.12); color: #20B2AA; border: 1px solid rgba(32,178,170,0.3); }
 
     /* ─── GitHub link inside project card ───────────────────────── */
     .proj-gh-link {
@@ -575,7 +576,7 @@
         <div class="highlight-card">
           <div class="highlight-icon">⚡</div>
           <div class="highlight-num">80%</div>
-          <div class="highlight-desc">Reduced SQS dead-lettered messages (1500/day ₒ 12/day)</div>
+          <div class="highlight-desc">Reduced SQS dead-lettered messages (1500/day → 12/day)</div>
         </div>
         <div class="highlight-card">
           <div class="highlight-icon">🔧</div>
@@ -618,7 +619,7 @@
           <ul class="exp-bullets">
             <li>Increased mortgage product <strong>recommendation accuracy 40%</strong> by migrating rule logic into a configurable Spring Boot service, externalizing criteria for rapid updates by underwriting stakeholders.</li>
             <li>Led migration of rocket.com serving <strong>10M+ monthly users</strong> from Angular to React/Next.js; integrated third-party services via GraphQL APIs to optimize inter-service communication.</li>
-            <li>Reduced SQS dead-lettered messages <strong>80%</strong> (DLQ backlog: 1500/day ₒ 12/day) by redesigning data retention workflow, tuning consumer concurrency/retries, and improving cold-start path.</li>
+            <li>Reduced SQS dead-lettered messages <strong>80%</strong> (DLQ backlog: 1500/day → 12/day) by redesigning data retention workflow, tuning consumer concurrency/retries, and improving cold-start path.</li>
             <li>Built automated test frameworks (JUnit, Postman, Playwright), increasing <strong>test coverage 45%</strong> and reducing regression defects 30% via CI/CD integration.</li>
           </ul>
           <div class="exp-tech">
@@ -731,11 +732,12 @@
 
     <!-- Tab Bar -->
     <div class="proj-tabs reveal" style="margin-bottom:40px;">
-      <button class="proj-tab active" data-filter="all">All <span class="proj-tab-count">11</span></button>
+      <button class="proj-tab active" data-filter="all">All <span class="proj-tab-count">16</span></button>
       <button class="proj-tab" data-filter="ai">AI &amp; ML <span class="proj-tab-count">4</span></button>
       <button class="proj-tab" data-filter="fullstack">Full-Stack <span class="proj-tab-count">4</span></button>
       <button class="proj-tab" data-filter="frontend">Frontend <span class="proj-tab-count">2</span></button>
       <button class="proj-tab" data-filter="systems">Systems &amp; IoT <span class="proj-tab-count">1</span></button>
+      <button class="proj-tab" data-filter="analytics">Business Analytics <span class="proj-tab-count">5</span></button>
     </div>
 
     <div class="projects-grid" id="projects-grid">
@@ -915,6 +917,96 @@
           <a href="https://github.com/punithAJ-hub/Lora-Simulation" target="_blank" class="proj-gh-link">
             <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
             GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- ── Business Analytics ── -->
+      <div class="project-card reveal" data-cat="analytics">
+        <div class="project-cat-badge badge-analytics">Business Analytics</div>
+        <div class="project-icon">📈</div>
+        <div class="project-name">Sales Performance Dashboard</div>
+        <div class="project-desc">Power BI-style interactive dashboard tracking monthly revenue trends, regional breakdowns, top-10 products, and category sales mix — built with Chart.js and dynamic filter controls.</div>
+        <div class="project-metric">$4.7M annual revenue visualized</div>
+        <div class="project-links">
+          <span class="tag tag-blue">Chart.js</span>
+          <span class="tag tag-muted">HTML/CSS/JS</span>
+          <span class="tag tag-green">KPI Cards</span>
+          <a href="https://punithaj-hub.github.io/PowerBI-Analytics-Portfolio/" target="_blank" class="proj-gh-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M10 6v2H5v11h11v-5h2v6a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1h6zm11-3v8h-2V6.413l-7.293 7.294-1.414-1.414L17.585 5H13V3h8z"/></svg>
+            Live Demo
+          </a>
+          <a href="https://github.com/punithAJ-hub/PowerBI-Analytics-Portfolio" target="_blank" class="proj-gh-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-1" data-cat="analytics">
+        <div class="project-cat-badge badge-analytics">Business Analytics</div>
+        <div class="project-icon">👥</div>
+        <div class="project-name">HR Analytics Dashboard</div>
+        <div class="project-desc">Workforce insights dashboard covering headcount by department, attrition rates, age distribution, and key drivers of employee turnover — enabling data-driven HR decision making.</div>
+        <div class="project-metric">1,470 employee records analyzed</div>
+        <div class="project-links">
+          <span class="tag tag-blue">Chart.js</span>
+          <span class="tag tag-purple">HR Analytics</span>
+          <span class="tag tag-muted">Attrition Modeling</span>
+          <a href="https://punithaj-hub.github.io/PowerBI-Analytics-Portfolio/" target="_blank" class="proj-gh-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M10 6v2H5v11h11v-5h2v6a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1h6zm11-3v8h-2V6.413l-7.293 7.294-1.414-1.414L17.585 5H13V3h8z"/></svg>
+            Live Demo
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-2" data-cat="analytics">
+        <div class="project-cat-badge badge-analytics">Business Analytics</div>
+        <div class="project-icon">💰</div>
+        <div class="project-name">Budget vs Actuals Dashboard</div>
+        <div class="project-desc">Financial performance tracker comparing budgeted vs actual spend across 6 cost centers, with variance analysis, monthly burn trends, and budget allocation breakdown by category.</div>
+        <div class="project-metric">$8.4M budget portfolio tracked</div>
+        <div class="project-links">
+          <span class="tag tag-green">Financial Analytics</span>
+          <span class="tag tag-blue">Chart.js</span>
+          <span class="tag tag-muted">Variance Analysis</span>
+          <a href="https://punithaj-hub.github.io/PowerBI-Analytics-Portfolio/" target="_blank" class="proj-gh-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M10 6v2H5v11h11v-5h2v6a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1h6zm11-3v8h-2V6.413l-7.293 7.294-1.414-1.414L17.585 5H13V3h8z"/></svg>
+            Live Demo
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal" data-cat="analytics">
+        <div class="project-cat-badge badge-analytics">Business Analytics</div>
+        <div class="project-icon">🔄</div>
+        <div class="project-name">Customer Churn Dashboard</div>
+        <div class="project-desc">Churn prediction analytics dashboard showing retention vs churn rates, contract-type impact, monthly churn trends, and tenure-based risk segmentation for targeted retention strategies.</div>
+        <div class="project-metric">26.5% churn rate identified &amp; segmented</div>
+        <div class="project-links">
+          <span class="tag tag-orange">Churn Analysis</span>
+          <span class="tag tag-blue">Chart.js</span>
+          <span class="tag tag-muted">Retention Modeling</span>
+          <a href="https://punithaj-hub.github.io/PowerBI-Analytics-Portfolio/" target="_blank" class="proj-gh-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M10 6v2H5v11h11v-5h2v6a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1h6zm11-3v8h-2V6.413l-7.293 7.294-1.414-1.414L17.585 5H13V3h8z"/></svg>
+            Live Demo
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-1" data-cat="analytics">
+        <div class="project-cat-badge badge-analytics">Business Analytics</div>
+        <div class="project-icon">🚚</div>
+        <div class="project-name">Supply Chain Dashboard</div>
+        <div class="project-desc">End-to-end supply chain analytics covering stock levels by category, supplier lead times, order fulfillment rate trends, and inventory status breakdown — enabling proactive procurement decisions.</div>
+        <div class="project-metric">97.3% order fulfillment rate tracked</div>
+        <div class="project-links">
+          <span class="tag tag-green">Supply Chain</span>
+          <span class="tag tag-blue">Chart.js</span>
+          <span class="tag tag-muted">Inventory Analytics</span>
+          <a href="https://punithaj-hub.github.io/PowerBI-Analytics-Portfolio/" target="_blank" class="proj-gh-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M10 6v2H5v11h11v-5h2v6a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1h6zm11-3v8h-2V6.413l-7.293 7.294-1.414-1.414L17.585 5H13V3h8z"/></svg>
+            Live Demo
           </a>
         </div>
       </div>
